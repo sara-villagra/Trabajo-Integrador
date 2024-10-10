@@ -1,0 +1,60 @@
+### traer todos los contenidos
+### mostrar home
+GET http://localhost:3008
+
+
+### Mostrar todos  los contenidos
+GET http://localhost:3008/contenido
+
+
+### Mostrar contenido por id
+
+GET http://localhost:3008/contenido/2
+
+
+### Mostrar contenido por su nombre
+
+GET http://localhost:3008/contenido/name/Riverdale
+### Mostrar contenido por id
+
+
+### Actualizar un contenido
+PUT http://localhost:3008/contenido/2
+
+
+
+### Crear un nuevo contenido
+POST http://localhost:3008/contenido
+Content-Type: application/json
+
+{ 
+   "poster":"./posters/99.jpg",
+   "titulo":"outlander",
+   "id_categoria":1,
+   "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novelas homónima de Diana Gabaldon.",
+   "gen":"Fantasia",
+   "id_busqueda":97,
+   "temporada":"7",
+   "duracion":"N/A",
+   "trailer":"https://youtu.be/1Q_ixUVIbcg"
+  
+}
+
+###  Actualizar un contenido
+
+PUT http://localhost:3008/contenido/154
+Content-Type: application/json
+
+{
+   "poster":"./posters/99.jpg",
+   "titulo":"Outlander",
+   "id_categoria":1,
+   "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novela.Outlander es una serie de romance histórico y viajes en el tiempo sobre la enfermera británica Claire Randall, que viaja en el tiempo desde el siglo XX hasta la Escocia del siglo XVII . Allí encuentra el amor y la aventura con el apuesto Jamie Fraser, un guerrero de las Tierras Altas.",
+   "gen":"Fantasia",
+   "id_busqueda":98,
+   "temporada":"6",
+   "duracion":"N/A",
+   "trailer":"https://youtu.be/1Q_ixUVIbcg"
+}
+### delete un producto por ID
+DELETE http://localhost:3008/154
