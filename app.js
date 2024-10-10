@@ -5,7 +5,7 @@ const express = require('express')
 const contenidoRouters = require('./routes/contenidoRoutes.js')
 const app = express()
 const PORT = process.env.PORT || 3000
-// Middlewares
+// Middlewares json
 app.use(express.json())
 
 //crea middleware de conexion y verificacion:
