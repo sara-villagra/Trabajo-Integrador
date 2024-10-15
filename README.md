@@ -4,6 +4,10 @@
 
 En este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL. Ádemas,utilizaré Sequelize, este ORM nos permitirá manipular la bases de manera sencilla. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se implementó Express Router para optimizar la arquitectura de las diferentes rutas.
 
+
+![DER de contenido](/modeloRelacionalContenido.png)
+
+
 ## Estructura del Repositorio
 
 ```plaintext
