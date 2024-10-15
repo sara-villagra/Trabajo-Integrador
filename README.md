@@ -4,7 +4,23 @@
 
 En este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL. Ádemas,utilizaré Sequelize, este ORM nos permitirá manipular la bases de manera sencilla. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se implementó Express Router para optimizar la arquitectura de las diferentes rutas.
 
+## DER del Proyecto
 
+Dentro de la carperta json se encuentra los datos de los contenidos del streaming, con ellos, desarrolle el siguiente modelo relacional. Donde cree 7 tablas:
+- categorias:
+Dentro estan las categorias.
+- actores:
+Dentro estan nombre y apellido de los actores.
+- generos:
+Dentro estan los generos.
+- busqueda:
+Dentro estan las palabras de busqueda.
+- contenido:
+Dentro estan  poster, titulo,id_categorias(FK-de categorias),resumen, gen,id_busqueda(FK-de busqueda), temporada,duracion,trailer.
+- contenido-generos:
+Dentro se encuentra se cea la relacion entre contenido y los generos.
+- contenido-actores:
+Dentro se encuentra se cea la relacion entre contenido y los actores.
 ![DER de contenido](/modeloRelacionalContenido.png)
 
 
