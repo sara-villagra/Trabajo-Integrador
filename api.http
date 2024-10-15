@@ -37,7 +37,7 @@ Content-Type: application/json
 
 ###  Actualizar un contenido
 
-PUT http://localhost:3008/contenido/154
+PUT http://localhost:3008/contenido/156
 Content-Type: application/json
 
 {
@@ -51,5 +51,16 @@ Content-Type: application/json
    "duracion":"N/A",
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
 }
+### Actualizar parcialmente contenido temporada:
+
+PATCH http://localhost:3008/contenido/156
+Content-Type: application/json
+
+{
+   "temporada":"7"
+}
+
+### Borrar un contenido
 ### delete un producto por ID
-DELETE http://localhost:3008/154
+DELETE http://localhost:3008/contenido/156
+ 

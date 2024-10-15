@@ -88,7 +88,31 @@ const addContenido = async (req, res) => {
   res.status(500).send('Error en el servidor')
  }
 }
+// Actualizar temporada d cotenido
+const updateTemporada = async (req, res) => {
+ try {
+  const { id_contenido } = req.params
+  const { temporada } = req.body
 
+  const [updateContenido] = await Contenido.update(
+   { temporada },
+   { where: { id_contenido } }
+  )
+  if (!updateContenido) {
+   res.status(404).send('Contenido no encontrado')
+   return
+  } else {
+   const contenidoActualizado = await Contenido.findByPk(id_contenido)
+   res.status(200).json({
+    message: 'Temporada actualizada correctamente',
+    contenidoActualizado
+   })
+  }
+ } catch (error) {
+  console.error('Error al actualizar la temporada:', error)
+  res.status(500).send('Error en el servidor')
+ }
+}
 //Actualizar un contenido
 const upContenido = async (req, res) => {
  try {
@@ -131,7 +155,9 @@ const upContenido = async (req, res) => {
   }
  } catch (error) {
   console.error('Error al actualizar el contenido:', error)
-  res.status(500).send('Error', error)
+  res.status(500).send('Error en el servidor')
+  //console.error('Error al actualizar el contenido:', error)
+  //res.status(500).send('Error', error)
  }
 }
 //eliminar contenido
@@ -145,7 +171,9 @@ const deleteContenido = async (req, res) => {
    await deleteConten.destroy()
    res.status(204).json({ messagge: 'Contenido eliminado con éxito' })
   }
- } catch (error) {}
+ } catch (error) {
+  res.status(500).send({ messagge: 'error en la petición' })
+ }
 }
 module.exports = {
  getAllContenido,
@@ -153,5 +181,6 @@ module.exports = {
  getContenidoByTitulo,
  addContenido,
  upContenido,
- deleteContenido
+ deleteContenido,
+ updateTemporada
 }
