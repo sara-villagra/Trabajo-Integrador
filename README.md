@@ -21,6 +21,10 @@ Dentro estan  poster, titulo,id_categorias(FK-de categorias),resumen, gen,id_bus
 Dentro se encuentra se cea la relacion entre contenido y los generos.
 - contenido-actores:
 Dentro se encuentra se cea la relacion entre contenido y los actores.
+
+- **En base a este esquema, se genero los script para crear una base de datos llamada "trailersFlix" y insertar las tablas , dentro de MySQL Workbench .
+Con ayuda AI, ingrese los datos en las tablas.**
+
 ![DER de contenido](/modeloRelacionalContenido.png)
 
 
