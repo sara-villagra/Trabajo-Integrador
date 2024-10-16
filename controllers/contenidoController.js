@@ -88,6 +88,7 @@ const addContenido = async (req, res) => {
   res.status(500).send('Error en el servidor')
  }
 }
+
 // Actualizar temporada d cotenido
 const updateTemporada = async (req, res) => {
  try {

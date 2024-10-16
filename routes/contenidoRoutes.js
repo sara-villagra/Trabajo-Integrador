@@ -12,6 +12,7 @@ router.get('/:id', contenidoController.getContenidoById)
 router.get('/name/:titulo', contenidoController.getContenidoByTitulo)
 //post contenido
 router.post('/', contenidoController.addContenido)
+
 //actualizar contenido
 router.put('/:id_contenido', contenidoController.upContenido)
 //actualizar temporada

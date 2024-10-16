@@ -34,6 +34,14 @@ Content-Type: application/json
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
   
 }
+### Crear un actor de serie Outlander
+POST http://localhost:3008/contenido/actor
+Content-Type: application/json
+
+{
+  "nombre": "Sam",
+  "apellido": "Heughan"
+}
 
 ###  Actualizar un contenido
 
