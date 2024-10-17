@@ -28,21 +28,19 @@ const Contenido_Actores = sequelize.define(
   }
  },
  {
-  tableName: 'actores',
+  tableName: 'Contenido_Actores',
   timestamps: false
  }
 )
-// Definir las relaciones
+// // Definir las relaciones
 Contenido.belongsToMany(Actor, {
  through: 'Contenido_Actores',
- foreignKey: 'id_contenido',
- otherKey: 'id_actores'
+ foreignKey: 'id_contenido'
 })
 
 Actor.belongsToMany(Contenido, {
  through: 'Contenido_Actores',
- foreignKey: 'id_actores',
- otherKey: 'id_contenido'
+ foreignKey: 'id_actores'
 })
 
 // Contenido_Actores.belongsTo(Contenido, { foreignKey: 'id_contenido' })

@@ -43,6 +43,13 @@ Content-Type: application/json
   "apellido": "Heughan"
 }
 
+###unir contenido y actor
+
+POST http://localhost:3008/contenido/156/actor/173
+
+
+### Borrar un actor de un contenido
+
 ###  Actualizar un contenido
 
 PUT http://localhost:3008/contenido/156
