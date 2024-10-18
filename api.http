@@ -67,10 +67,15 @@ Content-Type: application/json
 {
    "temporada":"7"
 }
-###
+### fusinar contenido y genero en tabla contenido_genero
 POST http://localhost:3008/contenido/156/nombre/Drama
 
 
+### fusinar contenido y busqueda en tabla contenido_busqueda
+POST http://localhost:3008/contenido/156/busqueda/98
+### Eliminar un actor de un contenido
+
+DELETE http://localhost:3008/contenido/156/actor/173
 ### delete un producto por ID
 DELETE http://localhost:3008/contenido/156
  

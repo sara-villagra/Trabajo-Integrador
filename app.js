@@ -9,6 +9,7 @@ const actorRouter = require('./routes/actorRouter.js')
 const contenidoActorRouters = require('./routes/contenidoActorRouters.js')
 const { Contenido_Genero } = require('./models/contenido_genero.js')
 const contenidoGeneroRouter = require('./routes/contenidoGeneroRouter.js')
+const contenidoBusquedaRouter = require('./routes/contenidoBusquedaRouter.js')
 const app = express()
 const PORT = process.env.PORT || 3000
 app.disable('x-powered-by')
@@ -40,7 +41,8 @@ app.use(
  contenidoRouters,
  actorRouter,
  contenidoActorRouters,
- contenidoGeneroRouter
+ contenidoGeneroRouter,
+ contenidoBusquedaRouter
 )
 
 //Middleware para rutas no encontradas 404
