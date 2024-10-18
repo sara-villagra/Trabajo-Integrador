@@ -6,7 +6,7 @@ En este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL.
 
 ## DER del Proyecto
 
-Dentro de la carperta json se encuentra los datos de los contenidos del streaming, con ellos, desarrolle el siguiente modelo relacional. Donde cree 7 tablas:
+Dentro de la carperta json se encuentra los datos de los contenidos del streaming, con ellos, desarrolle el siguiente modelo relacional. Donde cree 8 tablas:
 - categorias:
 Dentro estan las categorias.
 - actores:
@@ -21,11 +21,12 @@ Dentro estan  poster, titulo,id_categorias(FK-de categorias),resumen, gen,id_bus
 Dentro se encuentra se cea la relacion entre contenido y los generos.
 - contenido-actores:
 Dentro se encuentra se cea la relacion entre contenido y los actores.
-
+contenido_busqueda:
+Dentro se encuentra se cea la relacion entre contenido y las palabras de busqueda.
 - **En base a este esquema, se genero los script para crear una base de datos llamada "trailersFlix" y insertar las tablas , dentro de MySQL Workbench .
 Con ayuda AI, ingrese los datos en las tablas.**
 
-![DER de contenido](/modeloRelacionalContenido.png)
+<!-- ![DER de contenido](/modeloRelacionalContenido.png) -->
 
 
 ## Estructura del Repositorio

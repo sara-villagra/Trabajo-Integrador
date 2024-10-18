@@ -1,4 +1,3 @@
-### traer todos los contenidos
 ### mostrar home
 GET http://localhost:3008
 
@@ -8,12 +7,10 @@ GET http://localhost:3008/contenido
 
 
 ### Mostrar contenido por id
-
 GET http://localhost:3008/contenido/2
 
 
 ### Mostrar contenido por su nombre
-
 GET http://localhost:3008/contenido/name/Riverdale
 ### Mostrar contenido por id
 
@@ -28,7 +25,6 @@ Content-Type: application/json
    "id_categoria":1,
    "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novelas homónima de Diana Gabaldon.",
    "gen":"Fantasia",
-   "id_busqueda":97,
    "temporada":"7",
    "duracion":"N/A",
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
@@ -43,15 +39,13 @@ Content-Type: application/json
   "apellido": "Heughan"
 }
 
-###unir contenido y actor
+###unir contenido y actor en contenido_actor
 
 POST http://localhost:3008/contenido/156/actor/173
 
 
-### Borrar un actor de un contenido
 
 ###  Actualizar un contenido
-
 PUT http://localhost:3008/contenido/156
 Content-Type: application/json
 
@@ -61,21 +55,22 @@ Content-Type: application/json
    "id_categoria":1,
    "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novela.Outlander es una serie de romance histórico y viajes en el tiempo sobre la enfermera británica Claire Randall, que viaja en el tiempo desde el siglo XX hasta la Escocia del siglo XVII . Allí encuentra el amor y la aventura con el apuesto Jamie Fraser, un guerrero de las Tierras Altas.",
    "gen":"Fantasia",
-   "id_busqueda":98,
-   "temporada":"6",
+    "temporada":"6",
    "duracion":"N/A",
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
 }
-### Actualizar parcialmente contenido temporada:
 
+### Actualizar parcialmente contenido temporada:
 PATCH http://localhost:3008/contenido/156
 Content-Type: application/json
 
 {
    "temporada":"7"
 }
+###
+POST http://localhost:3008/contenido/156/nombre/Drama
 
-### Borrar un contenido
+
 ### delete un producto por ID
 DELETE http://localhost:3008/contenido/156
  

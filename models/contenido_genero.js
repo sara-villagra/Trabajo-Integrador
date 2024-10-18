@@ -1,11 +1,11 @@
 const { sequelize } = require('../conexion/database.js')
 const { DataTypes } = require('sequelize')
-const { Actor } = require('./actor.js')
+const { Genero } = require('./genero.js')
 const { Contenido } = require('./contenido.js')
-const Contenido_Actores = sequelize.define(
- 'Contenido_Actores',
+const Contenido_Genero = sequelize.define(
+ 'Contenido_Genero',
  {
-  id_contenido_actores: {
+  id_contenido_genero: {
    type: DataTypes.INTEGER,
    primaryKey: true,
    autoIncrement: true,
@@ -19,28 +19,28 @@ const Contenido_Actores = sequelize.define(
     key: 'id_contenido'
    }
   },
-  id_actores: {
+  id_genero: {
    type: DataTypes.INTEGER,
    references: {
-    model: Actor,
-    key: 'id_actores'
+    model: Genero,
+    key: 'id_genero'
    }
   }
  },
  {
-  tableName: 'Contenido_Actores',
+  tableName: 'contenido_genero',
   timestamps: false
  }
 )
 // // Definir las relaciones
-Contenido.belongsToMany(Actor, {
- through: 'Contenido_Actores',
+Contenido.belongsToMany(Genero, {
+ through: 'Contenido_Genero',
  foreignKey: 'id_contenido'
 })
 
-Actor.belongsToMany(Contenido, {
- through: 'Contenido_Actores',
- foreignKey: 'id_actores'
+Genero.belongsToMany(Contenido, {
+ through: 'Contenido_Genero',
+ foreignKey: 'id_genero'
 })
 
-module.exports = { Contenido_Actores }
+module.exports = { Contenido_Genero }

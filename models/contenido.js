@@ -1,6 +1,7 @@
 // Model for Contenido
 const { sequelize } = require('../conexion/database.js')
 const { DataTypes } = require('sequelize')
+const { Categoria } = require('./categoria.js')
 
 const Contenido = sequelize.define(
  'Contenido',
@@ -23,7 +24,10 @@ const Contenido = sequelize.define(
   },
   id_categoria: {
    type: DataTypes.INTEGER,
-   allowNull: false
+   references: {
+    model: Categoria,
+    key: 'id_categoria'
+   }
   },
   resumen: {
    type: DataTypes.TEXT,
@@ -31,10 +35,6 @@ const Contenido = sequelize.define(
   },
   gen: {
    type: DataTypes.STRING(100),
-   allowNull: false
-  },
-  id_busqueda: {
-   type: DataTypes.INTEGER,
    allowNull: false
   },
   temporada: {
@@ -57,5 +57,13 @@ const Contenido = sequelize.define(
   timestamps: false
  }
 )
+// // Definir las relaciones
+Categoria.hasMany(Contenido, {
+ foreignKey: 'id_categoria'
+})
+
+Contenido.belongsTo(Categoria, {
+ foreignKey: 'id_categoria'
+})
 
 module.exports = { Contenido }

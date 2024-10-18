@@ -59,7 +59,6 @@ const addContenido = async (req, res) => {
    id_categoria,
    resumen,
    gen,
-   id_busqueda,
    temporada,
    duracion,
    trailer
@@ -70,7 +69,6 @@ const addContenido = async (req, res) => {
    id_categoria,
    resumen,
    gen,
-   id_busqueda,
    temporada,
    duracion,
    trailer
@@ -124,7 +122,6 @@ const upContenido = async (req, res) => {
    id_categoria,
    resumen,
    gen,
-   id_busqueda,
    temporada,
    duracion,
    trailer
@@ -137,7 +134,6 @@ const upContenido = async (req, res) => {
     id_categoria,
     resumen,
     gen,
-    id_busqueda,
     temporada,
     duracion,
     trailer

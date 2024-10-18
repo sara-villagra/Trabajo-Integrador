@@ -1,25 +1,26 @@
 const { sequelize } = require('../conexion/database.js')
 const { DataTypes } = require('sequelize')
-const Genero = sequelize.define(
- 'Genero',
+
+const Busqueda = sequelize.define(
+ 'Busqueda',
  {
-  id_genero: {
+  id_busqueda: {
    type: DataTypes.INTEGER,
    primaryKey: true,
    autoIncrement: true,
    allowNull: false,
    unique: true
   },
-  nombre: {
-   type: DataTypes.STRING(100),
+  palabras_de_busqueda: {
+   type: DataTypes.TEXT,
    allowNull: true,
    default: 1
   }
  },
  {
-  tableName: 'generos',
+  tableName: 'Busqueda',
   timestamps: false
  }
 )
 
-module.exports = { Genero }
+module.exports = { Busqueda }
