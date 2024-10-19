@@ -8,14 +8,19 @@ const contenidoRouters = require('./routes/contenidoRoutes.js')
 const actorRouter = require('./routes/actorRouter.js')
 const contenidoActorRouters = require('./routes/contenidoActorRouters.js')
 const { Contenido_Genero } = require('./models/contenido_genero.js')
+const { ContenidoBusqueda } = require('./models/contenido_busqueda.js')
+const { Busqueda } = require('./models/busqueda.js')
 const contenidoGeneroRouter = require('./routes/contenidoGeneroRouter.js')
 const contenidoBusquedaRouter = require('./routes/contenidoBusquedaRouter.js')
+const busquedaRouter = require('./routes/busquedaRouter.js')
 const app = express()
 const PORT = process.env.PORT || 3000
 app.disable('x-powered-by')
 // Middlewares json
 app.use(express.json())
+//middleware para parsear body
 
+app.use(express.urlencoded({ extended: true }))
 //crea middleware de conexion y verificacion:
 
 app.use(async (req, res, next) => {
@@ -27,6 +32,8 @@ app.use(async (req, res, next) => {
   await Actor.sync()
   await Contenido_Actores.sync()
   await Contenido_Genero.sync()
+  await Busqueda.sync()
+  await ContenidoBusqueda.sync()
   next()
  } catch (error) {
   console.error('No se pudo conectar con la base de datos:', error)
@@ -42,7 +49,8 @@ app.use(
  actorRouter,
  contenidoActorRouters,
  contenidoGeneroRouter,
- contenidoBusquedaRouter
+ contenidoBusquedaRouter,
+ busquedaRouter
 )
 
 //Middleware para rutas no encontradas 404

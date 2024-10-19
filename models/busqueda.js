@@ -12,9 +12,7 @@ const Busqueda = sequelize.define(
    unique: true
   },
   palabras_de_busqueda: {
-   type: DataTypes.TEXT,
-   allowNull: true,
-   default: 1
+   type: DataTypes.TEXT
   }
  },
  {

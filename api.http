@@ -70,9 +70,15 @@ Content-Type: application/json
 ### fusinar contenido y genero en tabla contenido_genero
 POST http://localhost:3008/contenido/156/nombre/Drama
 
+### crear un nueva palabra de busqueda
+POST http://localhost:3008/contenido/busqueda
+Content-Type: application/json
 
+{
+   "palabras_de_busqueda":"Escocia"
+}
 ### fusinar contenido y busqueda en tabla contenido_busqueda
-POST http://localhost:3008/contenido/156/busqueda/98
+POST http://localhost:3008/contenido/156/busqueda/100
 ### Eliminar un actor de un contenido
 
 DELETE http://localhost:3008/contenido/156/actor/173
