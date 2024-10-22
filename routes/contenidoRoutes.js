@@ -4,22 +4,27 @@ const db = require('../conexion/database')
 const contenidoController = require('../controllers/contenidoController.js')
 
 // Routes for CRUD
+//Obtener todos los contenido:
 router.get('/', contenidoController.getAllContenido)
-// Get all conten)
-
+//Obtener contenido por su id:
 router.get('/:id', contenidoController.getContenidoById)
-//get por titulo
-
+//Obtener contenido por titulo
 router.get('/name/:titulo', contenidoController.getContenidoByTitulo)
-//post contenido
+//obtener pelicula por genero
+router.get('/genero/:id_genero', contenidoController.getContenidoByGenero)
+//obtener contenido por nombre genero
+router.get(
+ '/genero/nombre/:nombre',
+ contenidoController.getContenidoByGeneronombre
+)
+//post nuevo contenido
 router.post('/', contenidoController.addContenido)
 
 //actualizar contenido
 router.put('/:id_contenido', contenidoController.upContenido)
-//actualizar temporada
-
+//actualizar contenido parcialmente (temporada)
 router.patch('/:id_contenido', contenidoController.updateTemporada)
-//eliminar contenido
+//Eliminar contenido
 router.delete('/:id_contenido', contenidoController.deleteContenido)
 
 module.exports = router

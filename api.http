@@ -1,7 +1,6 @@
 ### mostrar home
 GET http://localhost:3008
 
-
 ### Mostrar todos  los contenidos
 GET http://localhost:3008/contenido
 
@@ -10,10 +9,13 @@ GET http://localhost:3008/contenido
 GET http://localhost:3008/contenido/2
 
 
-### Mostrar contenido por su nombre
+### filtar contenido por su nombre
 GET http://localhost:3008/contenido/name/Riverdale
-### Mostrar contenido por id
 
+### filtar contenido por su genero
+GET http://localhost:3008/contenido/genero/3
+### filtar contenido por su genero
+GET http://localhost:3008/contenido/genero/nombre/drama
 
 ### Crear un nuevo contenido
 POST http://localhost:3008/contenido
@@ -40,10 +42,7 @@ Content-Type: application/json
 }
 
 ###unir contenido y actor en contenido_actor
-
 POST http://localhost:3008/contenido/156/actor/173
-
-
 
 ###  Actualizar un contenido
 PUT http://localhost:3008/contenido/156
@@ -82,6 +81,7 @@ POST http://localhost:3008/contenido/156/busqueda/100
 ### Eliminar un actor de un contenido
 
 DELETE http://localhost:3008/contenido/156/actor/173
-### delete un producto por ID
+
+### delete un contenido por ID
 DELETE http://localhost:3008/contenido/156
  

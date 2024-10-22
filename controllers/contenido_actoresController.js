@@ -1,9 +1,8 @@
 const { Contenido_Actores } = require('../models/contenido_actores.js')
-//requerir el modelo de actor y contenido
 const { Actor } = require('../models/actor.js')
 const { Contenido } = require('../models/contenido.js')
-//funcion para conectar actor con contenido
 
+//funcion para conectar actor con contenido
 const conectarActorConContenido = async (req, res) => {
  try {
   const { id_actores, id_contenido } = req.params
@@ -23,7 +22,6 @@ const conectarActorConContenido = async (req, res) => {
    .status(201)
    .json({ message: 'Actor y peli asociada correctamente', relacion })
  } catch (error) {
-  console.error(error)
   res
    .status(500)
    .json({ error: 'Hubo un error al conectar actor con contenido' })

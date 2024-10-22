@@ -5,18 +5,19 @@ const { Genero } = require('../models/genero.js')
 //traer modelo de contenido
 const { Contenido } = require('../models/contenido.js')
 
+//funcion para fucionar contenido y genero
 const addGeneroContenido = async (req, res) => {
  try {
   const { nombre, id_contenido } = req.params // El nombre del género viene en los parámetros
-  //const { id_contenido } = req.body // El id del contenido viene en el body
+
   const contenido = await Contenido.findByPk(id_contenido)
-  console.log(contenido)
+
   // Verifica que el ID del contenido esté presente
   if (!contenido) {
    return res.status(400).json({ message: 'ID de contenido es es el correcto' })
   }
 
-  // Buscar el género en la tabla Genero usando su nombre
+  // Buscar el género en la tabla Genero usando su nombre que viene en el params
   const genero = await Genero.findOne({
    where: { nombre }
   })
@@ -30,7 +31,7 @@ const addGeneroContenido = async (req, res) => {
 
   // Asignar el id_genero correspondiente
   const id_genero = genero.id_genero
-  console.log(id_genero)
+
   // Crear la relación en la tabla intermedia Contenido_Genero
   const nuevaRelacion = await Contenido_Genero.create({
    id_contenido,
@@ -42,8 +43,7 @@ const addGeneroContenido = async (req, res) => {
    data: nuevaRelacion
   })
  } catch (error) {
-  console.error('Error al asignar género al contenido:', error)
-  return res.status(500).json({ message: 'Error del servidor' })
+  return res.status(500).json({ message: 'Error del servidor', error })
  }
 }
 

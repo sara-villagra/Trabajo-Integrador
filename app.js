@@ -1,9 +1,9 @@
-//const contenidoRoutes = require('./routes/contenidoRoutes')
+const express = require('express')
+const app = express()
 const { Contenido } = require('./models/contenido.js')
 const { Actor } = require('./models/actor.js')
 const { Contenido_Actores } = require('./models/contenido_actores.js')
 const { sequelize } = require('./conexion/database')
-const express = require('express')
 const contenidoRouters = require('./routes/contenidoRoutes.js')
 const actorRouter = require('./routes/actorRouter.js')
 const contenidoActorRouters = require('./routes/contenidoActorRouters.js')
@@ -13,7 +13,6 @@ const { Busqueda } = require('./models/busqueda.js')
 const contenidoGeneroRouter = require('./routes/contenidoGeneroRouter.js')
 const contenidoBusquedaRouter = require('./routes/contenidoBusquedaRouter.js')
 const busquedaRouter = require('./routes/busquedaRouter.js')
-const app = express()
 const PORT = process.env.PORT || 3000
 app.disable('x-powered-by')
 // Middlewares json
@@ -41,7 +40,7 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', (req, res) => {
- res.send('Bienvenido a TrailerFlix!')
+ res.status(200).json({ messagge: 'Bienvenido a TrailerFlix!' })
 })
 app.use(
  '/contenido',
@@ -55,9 +54,9 @@ app.use(
 
 //Middleware para rutas no encontradas 404
 app.use((req, res) => {
- res.status(404).send('<h1>404 página no encontrada upps! =(</h1>')
+ res.status(404).json({ messagge: '404 página no encontrada upps! =(' })
 })
 
 app.listen(PORT, () => {
- console.log(`Server running on port ${PORT}`)
+ console.log(`Server running on http://localhost: ${PORT}`)
 })

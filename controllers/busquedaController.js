@@ -16,8 +16,7 @@ const addBusqueda = async (req, res) => {
 
   res.status(201).send(busqueda)
  } catch (error) {
-  console.error('Error al crear la busqueda:', error)
-  res.status(500).send('Error en el server')
+  res.status(500).json({ error: 'Error al crear la busqueda', error })
  }
 }
 module.exports = {
