@@ -33,19 +33,15 @@ const Contenido = sequelize.define(
    type: DataTypes.TEXT,
    allowNull: false
   },
-  gen: {
-   type: DataTypes.STRING(100),
-   allowNull: false
-  },
   temporada: {
    type: DataTypes.STRING(20),
    allowNull: true,
    default: 'N/A'
   },
   duracion: {
-   type: DataTypes.STRING(100),
+   type: DataTypes.INTEGER,
    allowNull: true,
-   default: 'N/A,'
+   default: null
   },
   trailer: {
    type: DataTypes.STRING(100),

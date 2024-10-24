@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
   console.error('No se pudo conectar con la base de datos:', error)
  }
 })
-
+//Roters
 app.get('/', (req, res) => {
  res.status(200).json({ messagge: 'Bienvenido a TrailerFlix!' })
 })

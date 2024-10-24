@@ -12,6 +12,12 @@ router.get('/:id', contenidoController.getContenidoById)
 router.get('/name/:titulo', contenidoController.getContenidoByTitulo)
 //obtener pelicula por genero
 router.get('/genero/:id_genero', contenidoController.getContenidoByGenero)
+//obtener contenido con sus acotores
+
+router.get(
+ '/:id_contenido/actores',
+ contenidoController.getContenidoWithActores
+)
 //obtener contenido por nombre genero
 router.get(
  '/genero/nombre/:nombre',

@@ -2,6 +2,7 @@
 const { Contenido } = require('../models/contenido')
 const { Genero } = require('../models/genero.js')
 const { Contenido_Genero } = require('../models/contenido_genero.js')
+const { Actor } = require('../models/actor.js')
 const { Op } = require('sequelize')
 const getAllContenido = async (req, res) => {
  try {
@@ -110,7 +111,22 @@ const getContenidoByGeneronombre = async (req, res) => {
   res.status(500).send({ message: 'Error en el servidor', error })
  }
 }
-
+//filtar todos un contenidos con sus actores
+const getContenidoWithActores = async (req, res) => {
+ try {
+  const { id_contenido } = req.params
+  const contenido = await Contenido.findByPk(id_contenido, {
+   include: [{ model: Actor }]
+  })
+  if (!contenido) {
+   res.status(404).json({ message: 'Contenido no encontrado' })
+  } else {
+   res.status(200).json(contenido)
+  }
+ } catch (error) {
+  res.status(500).send({ message: 'Error en el servidor', error })
+ }
+}
 //Agregar un nuevo contenido
 
 const addContenido = async (req, res) => {
@@ -238,6 +254,7 @@ module.exports = {
  getContenidoByTitulo,
  getContenidoByGenero,
  getContenidoByGeneronombre,
+ getContenidoWithActores,
  addContenido,
  upContenido,
  deleteContenido,

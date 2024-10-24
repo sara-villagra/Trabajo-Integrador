@@ -28,7 +28,7 @@ const Contenido_Actores = sequelize.define(
   }
  },
  {
-  tableName: 'Contenido_Actores',
+  tableName: 'contenido_actores',
   timestamps: false
  }
 )
