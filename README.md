@@ -16,14 +16,16 @@ Dentro estan los generos.
 - busqueda:
 Dentro estan las palabras de busqueda.
 - contenido:
-Dentro estan  poster, titulo,id_categorias(FK-de categorias),resumen,id_busqueda(FK-de busqueda), temporada,duracion,trailer.
+Dentro estan  poster, titulo, id_categorias(FK-de categorias), resumen , temporada, duracion y trailer.
 - contenido-generos:
 Dentro se encuentra se cea la relacion entre contenido y los generos.
 - contenido-actores:
 Dentro se encuentra se cea la relacion entre contenido y los actores.
-contenido_busqueda:
+- contenido_busqueda:
 Dentro se encuentra se cea la relacion entre contenido y las palabras de busqueda.
-- **En base a este esquema, se genero los script para crear una base de datos llamada "trailersFlix" e insertar las tablas dentro de MySQL Workbench .
+
+
+**En base a este esquema, se genero los script para crear una base de datos llamada "trailersFlix" e insertar las tablas dentro de MySQL Workbench .
 Con ayuda AI, ingrese los datos en las tablas.**
 
 ![DER de contenido](src/diagrama/trailerFLIX2.png)
@@ -72,8 +74,8 @@ En el archivo api.http se puede realizar las operaciones CRUD y verificar la fun
 
 - **GET /**: Obtener ruta principal.
 - **GET /contenido**: Obtener todos los contenidos.
-- **GET /contenido/:id**: Obtener contenido específico.
-- **GET /contenido/:id/actores**: Obtener de un contenido específico los actores.
+- **GET /contenido/:id**: Obtener contenido por su id específico.
+- **GET /contenido/:id/actores**: Obtener de un contenido, los actores.
 - **GET /contenido/name/:nameContenido**: Obtener contenido por su nombre.
 - **GET /contenido/actor/:id_actor**: Obtener los contenido de un actor por su id.
 - **GET /contenido/genero/:id_genero**: Obtener los contenido por su id genero.
