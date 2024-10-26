@@ -3,6 +3,7 @@
 ## Descripción del Proyecto
 
 Este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL. Ádemas,utilizé Sequelize, este ORM nos permitirá manipular la bases de manera sencilla. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se implementó Express Router para optimizar la arquitectura de las diferentes rutas.
+Se implementó Swagger para documentar endpoints.
 
 ## DER del Proyecto
 
@@ -28,12 +29,13 @@ Dentro se encuentra se cea la relacion entre contenido y las palabras de busqued
 **En base a este esquema, se genero los script para crear una base de datos llamada "trailersFlix" e insertar las tablas dentro de MySQL Workbench .
 Con ayuda AI, ingrese los datos en las tablas.**
 
-![DER de contenido](src/diagrama/trailerFLIX2.png)
+![DER de contenido](assets/diagrama/trailerFLIX2.png)
 
 
 ## Estructura del Repositorio
 
 ```plaintext
+/assets
 /conexion/
   - database.js
 /controllers
@@ -47,22 +49,24 @@ Con ayuda AI, ingrese los datos en las tablas.**
   - actor.js
 /routes/
   - contenidoRoutes.js
-/src
+/utils
+ - swaggerConfig.js
 .env
 .gitignore  
 api.http
-/app.js
+app.js
 /README.md
 ```
 
 ### Descripción de Archivos y carpetas
 
+
+- **/assets**:Carpeta que contine dos carpetas con script para crear la BD y insert para cargar datos a la BD.
 - **/conexion**: Carpeta que contiene archivos de conexión.
 - **/controllers**: Carpeta que contiene los controladores de la aplicación.
 - **/json**: Carpeta que contiene un archivos JSON con los datos de BD.
 - **/models**: Carpeta que contiene los modelos de la aplicación.
 - **/routes**: Carpeta que contiene las rutas de la aplicación.
-- **/src**:Carpeta que contine dos carpetas con script para crear la BD y insert para cargar datos a la BD.
 - **.env**: Archivo que contiene las variables de entorno.
 - **.gitignore**: Archivo que indica qué archivos o carpetas no se deben incluir
 - **api.http**: Archivo que contiene las rutas de la API, para verificar funcionalidad.
@@ -70,7 +74,7 @@ api.http
 - **README.md**: Archivo con la descripción del proyecto.
 
 ## Funcionalidades del CRUD
-En el archivo api.http se puede realizar las operaciones CRUD y verificar la funcionalidad de la aplicación, para las siguientes operciones, utlizando Rest client. Tambien puedes utilizar Postman.
+En el archivo api.http se puede realizar las operaciones CRUD y verificar la funcionalidad de la aplicación, para las siguientes operciones, utlizando Rest client,Postman o verificar atraves del api de swagger
 
 - **GET /**: Obtener ruta principal.
 - **GET /contenido**: Obtener todos los contenidos.
@@ -146,7 +150,7 @@ La aplicación se inicializa y agregá la escucha de la conexión en el puerto 3
 
 ## Datos Proporcionados:
 Se proporciona dentro de la carpeta json un archivos correspondiente a los datos de los contenidos para cargar en la BD utilizando IA.
-Sin embargo, se proporcionar dentro de la carpeta SRC dos carpetas: En uno, con los script para crear la BD y en el otro, con los insert para cargar 50 contenidos y realizar las pruebas del funcionamiento del CRUD.
+Sin embargo, se proporcionar dentro de la carpeta assets dos carpetas: En uno, con los script para crear la BD y en el otro, con los insert para cargar 50 contenidos y realizar las pruebas del funcionamiento del CRUD.
 
 
 ## Environment Variables
@@ -162,31 +166,6 @@ Para la de conexión ,
 - https://github.com/sara-villagra
 
 
-## Resumen:
-Este proyecto desarrolla una plataforma de streaming utilizando Node.js, MySQL y Sequelize para implementar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se usa Express Router para gestionar las rutas de la aplicación.
-Estructura del Proyecto
-Se crearon 8 tablas principales: categorias, actores, generos, busqueda, contenido, contenido-generos, contenido-actores, y contenido_busqueda para modelar la base de datos "trailersFlix".
-La estructura del repositorio incluye carpetas como 
-- /conexion, 
-- /controllers, 
-- /json, 
-- /models, 
-- /routes, 
 
-
-entre otras, organizando archivos de conexión, controladores, modelos, rutas y datos en formato JSON.
-
-
-El CRUD permite:
-
-
-Obtener todos los contenidos, contenidos por ID, actores de un contenido, géneros, y búsquedas.
-Crear nuevos contenidos, actores, géneros, y búsquedas, así como asociar actores o géneros a los contenidos.
-Actualizar o eliminar contenidos.
-
-Datos:
-
-
-Se incluyen scripts para crear la base de datos y cargar datos de prueba.
 
 

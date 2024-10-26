@@ -5,7 +5,7 @@ GET http://localhost:3008
 GET http://localhost:3008/contenido
 
 ### Mostrar contenido por id
-GET http://localhost:3008/contenido/2
+GET http://localhost:3008/contenido/1
 
 ### Mostrar contenido con sus actores
 GET http://localhost:3008/contenido/1/actores
@@ -18,6 +18,8 @@ GET http://localhost:3008/contenido/actor/31
 
 ### filtar contenido por su genero
 GET http://localhost:3008/contenido/genero/3
+### filtar contenido por su genero
+GET http://localhost:3008/contenido/categorias/1
 ### filtar contenido por su genero
 GET http://localhost:3008/contenido/genero/nombre/drama
 

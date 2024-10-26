@@ -5,6 +5,82 @@ const { Genero } = require('../models/genero.js')
 //traer modelo de contenido
 const { Contenido } = require('../models/contenido.js')
 
+/**
+ * @swagger
+ * paths:
+ *   /contenido/{id_contenido}/genero/{nombre}:
+ *     post:
+ *       summary: Asignar género a un contenido
+ *       description: Crea una relación entre un contenido y un género especificado por su nombre, asignándolo en la tabla intermedia `Contenido_Genero`.
+ *       tags:
+ *         - Contenido
+ *       parameters:
+ *         - in: path
+ *           name: id_contenido
+ *           required: true
+ *           schema:
+ *             type: integer
+ *           description: ID del contenido al que se va a asignar el género
+ *         - in: path
+ *           name: nombre
+ *           required: true
+ *           schema:
+ *             type: string
+ *           description: Nombre del género a asignar
+ *       responses:
+ *         '201':
+ *           description: Género asignado exitosamente al contenido
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   message:
+ *                     type: string
+ *                     example: "Género [nombre] asignado correctamente al contenido"
+ *                   data:
+ *                     type: object
+ *                     properties:
+ *                       id_contenido:
+ *                         type: integer
+ *                         description: ID del contenido
+ *                       id_genero:
+ *                         type: integer
+ *                         description: ID del género asignado
+ *         '400':
+ *           description: ID de contenido no es correcto
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   message:
+ *                     type: string
+ *                     example: "ID de contenido es incorrecto"
+ *         '404':
+ *           description: Género no encontrado
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   message:
+ *                     type: string
+ *                     example: "El género [nombre] no fue encontrado"
+ *         '500':
+ *           description: Error en el servidor
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   message:
+ *                     type: string
+ *                     example: "Error del servidor"
+ *                   error:
+ *                     type: object
+ *                     description: Información del error
+ */
 //funcion para fucionar contenido y genero
 const addGeneroContenido = async (req, res) => {
  try {
