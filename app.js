@@ -1,7 +1,5 @@
 const express = require('express')
 const app = express()
-// const path = require('path')
-// require('dotenv').config({ path: path.resolve(__dirname, './src/.env') })
 const { Contenido } = require('./models/contenido.js')
 const { Actor } = require('./models/actor.js')
 const { Contenido_Actores } = require('./models/contenido_actores.js')
@@ -23,8 +21,8 @@ app.use(express.json())
 //middleware para parsear body
 
 app.use(express.urlencoded({ extended: true }))
-//crea middleware de conexion y verificacion:
 
+// middleware de conexion y verificacion:
 app.use(async (req, res, next) => {
  try {
   await sequelize.authenticate()
@@ -43,12 +41,12 @@ app.use(async (req, res, next) => {
 })
 //swagger config
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-//Roters
+//Routers
 app.get('/', (req, res) => {
  res.status(200).json({ messagge: 'Bienvenido a TrailerFlix!' })
 })
 app.use(
- '/contenido',
+ '/api/contenido',
  contenidoRouters,
  actorRouter,
  contenidoActorRouters,
@@ -64,6 +62,6 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
  console.log(`Server running on http://localhost:${PORT}`)
-
+ //documentación con swagger
  console.log(`Api documentacion running on http://localhost:${PORT}/api-docs`)
 })

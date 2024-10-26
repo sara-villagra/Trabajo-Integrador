@@ -3,7 +3,7 @@ const { Busqueda } = require('../models/busqueda.js')
 /**
  * @swagger
  * paths:
- *   /contenido/busqueda:
+ *   /api/contenido/busqueda:
  *     post:
  *       summary: Crear una nueva búsqueda
  *       description: Crea una nueva búsqueda en la base de datos utilizando las palabras de búsqueda proporcionadas.

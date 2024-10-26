@@ -8,7 +8,7 @@ const { Contenido } = require('../models/contenido.js')
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}/genero/{nombre}:
+ *   /api/contenido/{id_contenido}/genero/{nombre}:
  *     post:
  *       summary: Asignar género a un contenido
  *       description: Crea una relación entre un contenido y un género especificado por su nombre, asignándolo en la tabla intermedia `Contenido_Genero`.

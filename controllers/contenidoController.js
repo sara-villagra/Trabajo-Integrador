@@ -9,7 +9,7 @@ const { Op } = require('sequelize')
 /**
  * @swagger
  * paths:
- *   /contenido:
+ *   /api/contenido:
  *     get:
  *       summary: Obtiene todos los contenidos
  *       description: Este endpoint recupera todos los registros de contenido disponibles en la base de datos.
@@ -64,7 +64,7 @@ const getAllContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/{id}:
+ *   /api/contenido/{id}:
  *     get:
  *       summary: Obtiene un contenido por ID
  *       description: Este endpoint recupera un registro de contenido específico de la base de datos utilizando su ID.
@@ -124,7 +124,7 @@ const getContenidoById = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/name/{titulo}:
+ *   /api/contenido/name/{titulo}:
  *     get:
  *       summary: Obtiene un contenido por título
  *       description: Este endpoint recupera un registro de contenido específico de la base de datos utilizando su título.
@@ -186,7 +186,7 @@ const getContenidoByTitulo = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/genero/{id_genero}:
+ *   /api/contenido/genero/{id_genero}:
  *     get:
  *       summary: Obtiene contenidos por género
  *       description: Este endpoint recupera registros de contenido específicos de la base de datos utilizando el identificador de género.
@@ -262,7 +262,7 @@ const getContenidoByGenero = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/genero/nombre/{nombre}:
+ *   /api/contenido/genero/nombre/{nombre}:
  *     get:
  *       summary: Obtiene contenidos por nombre de género
  *       description: Este endpoint recupera registros de contenido específicos de la base de datos utilizando el nombre del género.
@@ -347,7 +347,7 @@ const getContenidoByGeneronombre = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}/actores:
+ *   /api/contenido/{id_contenido}/actores:
  *     get:
  *       summary: Obtiene contenido junto con sus actores
  *       description: Este endpoint recupera un registro de contenido junto con los actores asociados en la base de datos.
@@ -421,7 +421,7 @@ const getContenidoWithActores = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/categorias/{id_categoria}:
+ *   /api/contenido/categorias/{id_categoria}:
  *     get:
  *       summary: Filtrar contenido por categoría
  *       description: Obtiene una lista de contenidos filtrados por su categoría utilizando el ID de la categoría.
@@ -504,7 +504,7 @@ const getContenidoByCategorias = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido:
+ *   /api/contenido:
  *     post:
  *       summary: Agregar un nuevo contenido
  *       description: Crea un nuevo contenido con los datos proporcionados en el cuerpo de la solicitud.
@@ -611,7 +611,7 @@ const addContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}:
+ *   /api/contenido/{id_contenido}:
  *     patch:
  *       summary: Actualizar la temporada de un contenido
  *       description: Actualiza el campo de temporada de un contenido específico según su ID.
@@ -696,7 +696,7 @@ const updateTemporada = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}:
+ *   /api/contenido/{id_contenido}:
  *     put:
  *       summary: Actualizar un contenido completo
  *       description: Actualiza todos los campos de un contenido específico según su ID.
@@ -821,7 +821,7 @@ const upContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}:
+ *   /api/contenido/{id_contenido}:
  *     delete:
  *       summary: Eliminar un contenido
  *       description: Elimina un contenido específico de la base de datos usando su ID.

@@ -5,7 +5,7 @@ const { Contenido } = require('../models/contenido.js')
 /**
  * @swagger
  * paths:
- *   /contenido/{id_contenido}/actor/{id_actores}:
+ *   /api/contenido/{id_contenido}/actor/{id_actores}:
  *     post:
  *       summary: Conectar un actor con un contenido
  *       description: Asocia un actor existente a un contenido específico en la base de datos.

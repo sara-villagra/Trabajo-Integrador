@@ -6,7 +6,7 @@ const { Contenido } = require('../models/contenido.js')
 /**
  * @swagger
  * paths:
- *   /contenido/actor/{id_actores}:
+ *   /api/contenido/actor/{id_actores}:
  *     get:
  *       summary: Obtiene un actor junto con su contenido asociado
  *       description: Este endpoint recupera un registro de actor junto con el contenido asociado en la base de datos.
@@ -85,7 +85,7 @@ const getActoresConContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /contenido/actor:
+ *   /api/contenido/actor:
  *     post:
  *       summary: Crear un nuevo actor
  *       description: Agrega un nuevo actor a la base de datos.

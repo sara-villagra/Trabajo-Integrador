@@ -2,29 +2,29 @@
 GET http://localhost:3008
 
 ### Mostrar todos  los contenidos
-GET http://localhost:3008/contenido
+GET http://localhost:3008/api/contenido
 
 ### Mostrar contenido por id
-GET http://localhost:3008/contenido/1
+GET http://localhost:3008/api/contenido/1
 
 ### Mostrar contenido con sus actores
-GET http://localhost:3008/contenido/1/actores
+GET http://localhost:3008/api/contenido/1/actores
 
 ### filtar contenido por su nombre
-GET http://localhost:3008/contenido/name/Riverdale
+GET http://localhost:3008/api/contenido/name/Riverdale
 
 ### Mostrar contenido de un actor en especifico po su id
-GET http://localhost:3008/contenido/actor/31
+GET http://localhost:3008/api/contenido/actor/31
 
 ### filtar contenido por su genero
-GET http://localhost:3008/contenido/genero/3
+GET http://localhost:3008/api/contenido/genero/3
 ### filtar contenido por su genero
-GET http://localhost:3008/contenido/categorias/1
+GET http://localhost:3008/api/contenido/categorias/1
 ### filtar contenido por su genero
-GET http://localhost:3008/contenido/genero/nombre/drama
+GET http://localhost:3008/api/contenido/genero/nombre/drama
 
 ### Crear un nuevo contenido
-POST http://localhost:3008/contenido
+POST http://localhost:3008/api/contenido
 Content-Type: application/json
 
 { 
@@ -38,7 +38,7 @@ Content-Type: application/json
   
 }
 ### Crear un actor de serie Outlander
-POST http://localhost:3008/contenido/actor
+POST http://localhost:3008/api/contenido/actor
 Content-Type: application/json
 
 {
@@ -47,10 +47,10 @@ Content-Type: application/json
 }
 
 ###unir contenido y actor en contenido_actor
-POST http://localhost:3008/contenido/156/actor/173
+POST http://localhost:3008/api/contenido/156/actor/173
 
 ###  Actualizar un contenido
-PUT http://localhost:3008/contenido/156
+PUT http://localhost:3008/api/contenido/156
 Content-Type: application/json
 
 {
@@ -64,17 +64,17 @@ Content-Type: application/json
 }
 
 ### Actualizar parcialmente contenido temporada:
-PATCH http://localhost:3008/contenido/156
+PATCH http://localhost:3008/api/contenido/156
 Content-Type: application/json
 
 {
    "temporada":"7"
 }
 ### fusinar contenido y genero en tabla contenido_genero
-POST http://localhost:3008/contenido/156/genero/nombre/Drama
+POST http://localhost:3008/api/contenido/156/genero/nombre/Drama
 
 ### crear un nueva palabra de busqueda
-POST http://localhost:3008/contenido/busqueda
+POST http://localhost:3008/api/contenido/busqueda
 Content-Type: application/json
 
 {

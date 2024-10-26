@@ -76,24 +76,6 @@ const actoresSchema = {
   },
   required: ['id_actores', 'nombre', 'apellido']
  }
- /**
-  * @swagger
-  * components:
-  *   schemas:
-  *     Actor:
-  *       type: object
-  *       properties:
-  *         id_actor:
-  *           type: integer
-  *           example: 1
-  *         nombre:
-  *           type: string
-  *           example: "Nombre del Actor"
-  *         apellido:
-  *           type: string
-  *           example: "Apellido del Actor"
-  *         // Añade otros campos según tu modelo Actor
-  */
 }
 const generoSchema = {
  type: 'object',
@@ -109,6 +91,55 @@ const generoSchema = {
    example: 'Drama'
   },
   required: ['id_genero', 'nombre']
+ }
+}
+const busquedaSchema = {
+ type: 'object',
+ properties: {
+  id_busqueda: {
+   type: 'integer',
+   description: 'ID único del género',
+   example: 1
+  },
+  palabras_de_busqueda: {
+   type: 'text',
+   description: 'Palabra o palabras que referencie a su contenido',
+   example: 'Stranger Thing'
+  },
+  required: ['id_busqueda']
+ }
+}
+const categoriaSchema = {
+ type: 'object',
+ properties: {
+  id_categoria: {
+   type: 'integer',
+   description: 'ID único de categoría',
+   example: 1
+  },
+  nombre: {
+   type: 'string',
+   description: 'Nombre de la categoría',
+   example: 'Drama'
+  },
+  required: ['id_categoria', 'nombre']
+ }
+}
+const contenidoBusquedaSchema = {
+ type: 'object',
+ properties: {
+  id_contenido: {
+   type: 'integer',
+   description: 'ID del contenido, referenciado en la tabla Contenido',
+   example: 1
+  },
+  id_busqueda: {
+   type: 'integer',
+   description: 'ID de la búsqueda, referenciado en la tabla Busqueda',
+   example: 1
+  },
+
+  required: ['id_contenido', 'id_busqueda']
  }
 }
 const contenidoGeneroSchema = {
@@ -132,6 +163,27 @@ const contenidoGeneroSchema = {
   required: ['id_genero', 'nombre']
  }
 }
+const contenidoActoresSchema = {
+ type: 'object',
+ properties: {
+  id_contenido_actores: {
+   type: 'integer',
+   description: 'ID único de la relación entre contenido y actores',
+   example: 1
+  },
+  id_contenido: {
+   type: 'integer',
+   description: 'ID del contenido, referenciado en la tabla Contenido',
+   example: 1
+  },
+  id_actores: {
+   type: 'integer',
+   description: 'ID del actor, referenciado en la tabla Actor',
+   example: 23
+  },
+  required: ['id_actores', 'id_contenido', 'id_contenido_actores']
+ }
+}
 const swaggerOptions = {
  swaggerDefinition: {
   openapi: '3.0.0',
@@ -139,14 +191,14 @@ const swaggerOptions = {
    title: ' Proyecto Integrador: CRUD con Node.js y MySQL',
    version: '1.0.0',
    description:
-    'Este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL. Ádemas,utilizé Sequelize, este ORM nos permitirá manipular la bases de manera sencilla. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se implementó Express Router para optimizar la arquitectura de las diferentes rutas.'
+    'Este proyecto, desarrolla una plataforma de streaming usando Node.js y MySQL. Ádemas,utiliza Sequelize, este ORM nos permitirá manipular la bases de manera sencilla. La aplicación permitirá realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre una base de datos relacional. Se implementó Express Router para optimizar la arquitectura de las diferentes rutas.'
   },
 
   basePath: '/',
   servers: [
    {
     url: 'http://localhost:3008',
-    description: 'Development Server contenido'
+    description: 'Development Api Server contenidos de peliculas y series'
    }
   ],
   components: {
@@ -154,7 +206,11 @@ const swaggerOptions = {
     Contenido: contenidoSchema,
     Actor: actoresSchema,
     Genero: generoSchema,
-    Contenido_Genero: contenidoGeneroSchema
+    Busqueda: busquedaSchema,
+    Categoria: categoriaSchema,
+    Contenido_Genero: contenidoGeneroSchema,
+    Contenido_Busqueda: contenidoBusquedaSchema,
+    Contenido_Actores: contenidoActoresSchema
    }
   }
  },
