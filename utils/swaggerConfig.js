@@ -198,6 +198,7 @@ const swaggerOptions = {
   servers: [
    {
     url: 'http://localhost:3000',
+    url: 'https://trabajo-integrador-production-dfbc.up.railway.app',
     description: 'Development Api Server contenidos de peliculas y series'
    }
   ],
