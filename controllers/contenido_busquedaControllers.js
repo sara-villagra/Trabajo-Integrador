@@ -6,7 +6,7 @@ const { Busqueda } = require('../models/busqueda.js')
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}/busqueda/{id_busqueda}:
+ *   /contenido/{id_contenido}/busqueda/{id_busqueda}:
  *     post:
  *       summary: Conectar contenido con una búsqueda
  *       description: Asocia un contenido existente a una búsqueda específica en la base de datos.

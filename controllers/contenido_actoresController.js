@@ -5,7 +5,7 @@ const { Contenido } = require('../models/contenido.js')
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}/actor/{id_actores}:
+ *   /contenido/{id_contenido}/actor/{id_actores}:
  *     post:
  *       summary: Conectar un actor con un contenido
  *       description: Asocia un actor existente a un contenido específico en la base de datos.
@@ -69,26 +69,64 @@ const { Contenido } = require('../models/contenido.js')
 const conectarActorConContenido = async (req, res) => {
  try {
   const { id_actores, id_contenido } = req.params
+
+  // Verificar si el actor y el contenido existen
   const actor = await Actor.findByPk(id_actores)
   const contenido = await Contenido.findByPk(id_contenido)
+
   if (!actor) {
    return res.status(404).json({ error: 'Actor no encontrado' })
   }
   if (!contenido) {
    return res.status(404).json({ error: 'Contenido no encontrado' })
   }
+
+  // Verificar si la relación ya existe
+  const relacionExistente = await Contenido_Actores.findOne({
+   where: { id_actores, id_contenido }
+  })
+  if (relacionExistente) {
+   return res
+    .status(409)
+    .json({ message: 'La relación ya existe entre el actor y el contenido' })
+  }
+
+  // Crear la relación si no existe
   const relacion = await Contenido_Actores.create({
    id_actores,
    id_contenido
   })
+
   res
    .status(201)
-   .json({ message: 'Actor y peli asociada correctamente', relacion })
+   .json({ message: 'Actor y contenido asociados correctamente', relacion })
  } catch (error) {
   res
    .status(500)
    .json({ error: 'Hubo un error al conectar actor con contenido' })
  }
+ //  try {
+ //   const { id_actores, id_contenido } = req.params
+ //   const actor = await Actor.findByPk(id_actores)
+ //   const contenido = await Contenido.findByPk(id_contenido)
+ //   if (!actor) {
+ //    return res.status(404).json({ error: 'Actor no encontrado' })
+ //   }
+ //   if (!contenido) {
+ //    return res.status(404).json({ error: 'Contenido no encontrado' })
+ //   }
+ //   const relacion = await Contenido_Actores.create({
+ //    id_actores,
+ //    id_contenido
+ //   })
+ //   res
+ //    .status(201)
+ //    .json({ message: 'Actor y peli asociada correctamente', relacion })
+ //  } catch (error) {
+ //   res
+ //    .status(500)
+ //    .json({ error: 'Hubo un error al conectar actor con contenido' })
+ //  }
 }
 module.exports = {
  conectarActorConContenido

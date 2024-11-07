@@ -16,7 +16,7 @@ const Busqueda = sequelize.define(
   }
  },
  {
-  tableName: 'Busqueda',
+  tableName: 'busqueda',
   timestamps: false
  }
 )

@@ -9,7 +9,7 @@ const contenidoController = require('../controllers/contenidoController.js')
 router.get('/', contenidoController.getAllContenido)
 //Obtener contenido por su id:
 
-router.get('/:id', contenidoController.getContenidoById)
+router.get('/:id_contenido', contenidoController.getContenidoById)
 
 //Obtener contenido por titulo
 router.get('/name/:titulo', contenidoController.getContenidoByTitulo)

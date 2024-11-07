@@ -4,11 +4,12 @@ const { Contenido_Genero } = require('../models/contenido_genero.js')
 const { Genero } = require('../models/genero.js')
 //traer modelo de contenido
 const { Contenido } = require('../models/contenido.js')
+const { Op } = require('sequelize')
 
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}/genero/{nombre}:
+ *  /contenido/{id_contenido}/genero/nombre/{nombre}:
  *     post:
  *       summary: Asignar género a un contenido
  *       description: Crea una relación entre un contenido y un género especificado por su nombre, asignándolo en la tabla intermedia `Contenido_Genero`.
@@ -84,21 +85,25 @@ const { Contenido } = require('../models/contenido.js')
 //funcion para fucionar contenido y genero
 const addGeneroContenido = async (req, res) => {
  try {
-  const { nombre, id_contenido } = req.params // El nombre del género viene en los parámetros
+  const { id_contenido, nombre } = req.params
 
+  // Verificar si el contenido existe
   const contenido = await Contenido.findByPk(id_contenido)
-
-  // Verifica que el ID del contenido esté presente
   if (!contenido) {
-   return res.status(400).json({ message: 'ID de contenido es es el correcto' })
+   return res.status(400).json({ message: 'ID de contenido no es correcto' })
   }
 
-  // Buscar el género en la tabla Genero usando su nombre que viene en el params
+  // Buscar el género en la tabla Genero usando su nombre
+  // const genero = await Genero.findOne({
+  //  where: { nombre }
+  // })
   const genero = await Genero.findOne({
-   where: { nombre }
+   where: {
+    nombre: {
+     [Op.like]: nombre
+    }
+   }
   })
-
-  // Verifica si el género existe
   if (!genero) {
    return res
     .status(404)
@@ -108,7 +113,17 @@ const addGeneroContenido = async (req, res) => {
   // Asignar el id_genero correspondiente
   const id_genero = genero.id_genero
 
-  // Crear la relación en la tabla intermedia Contenido_Genero
+  // Verificar si la relación ya existe
+  const relacionExistente = await Contenido_Genero.findOne({
+   where: { id_contenido, id_genero }
+  })
+  if (relacionExistente) {
+   return res.status(409).json({
+    message: `La relación ya existe entre el contenido y el género ${nombre}`
+   })
+  }
+
+  // Crear la relación en la tabla intermedia Contenido_Genero si no existe
   const nuevaRelacion = await Contenido_Genero.create({
    id_contenido,
    id_genero

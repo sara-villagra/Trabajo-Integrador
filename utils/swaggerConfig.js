@@ -197,7 +197,7 @@ const swaggerOptions = {
   basePath: '/',
   servers: [
    {
-    url: 'http://localhost:3008',
+    url: 'http://localhost:3000',
     description: 'Development Api Server contenidos de peliculas y series'
    }
   ],

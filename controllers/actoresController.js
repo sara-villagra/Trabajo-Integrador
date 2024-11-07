@@ -6,7 +6,7 @@ const { Contenido } = require('../models/contenido.js')
 /**
  * @swagger
  * paths:
- *   /api/contenido/actor/{id_actores}:
+ *   /contenido/actor/{id_actores}:
  *     get:
  *       summary: Obtiene un actor junto con su contenido asociado
  *       description: Este endpoint recupera un registro de actor junto con el contenido asociado en la base de datos.
@@ -85,7 +85,7 @@ const getActoresConContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/actor:
+ *   /contenido/actor:
  *     post:
  *       summary: Crear un nuevo actor
  *       description: Agrega un nuevo actor a la base de datos.
@@ -144,17 +144,26 @@ const addActor = async (req, res) => {
  try {
   const { nombre, apellido } = req.body
 
-  // Crear actor
+  // Verificar si el actor ya existe
+  const actorExistente = await Actor.findOne({ where: { nombre, apellido } })
+  if (actorExistente) {
+   return res
+    .status(409)
+    .json({ message: 'El actor ya existe en la base de datos' })
+  }
+
+  // Crear actor si no existe
   const actor = await Actor.create({
    nombre,
    apellido
   })
-  // validar
-  if (!actor) return res.status(400).send('No se pudo crear el actor')
 
-  res
-   .status(201)
-   .json({ messagge: 'se agrego un nuevo actor con exito', actor })
+  // Validar creación
+  if (!actor) {
+   return res.status(400).send('No se pudo crear el actor')
+  }
+
+  res.status(201).json({ message: 'Se agregó un nuevo actor con éxito', actor })
  } catch (error) {
   res.status(500).json({ message: 'Error del servidor', error })
  }

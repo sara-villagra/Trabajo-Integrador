@@ -1,30 +1,31 @@
 ### mostrar home
-GET http://localhost:3008
+GET http://localhost:3000
 
 ### Mostrar todos  los contenidos
-GET http://localhost:3008/api/contenido
+GET http://localhost:3000/contenido
 
 ### Mostrar contenido por id
-GET http://localhost:3008/api/contenido/1
+GET http://localhost:3000/contenido/44
 
 ### Mostrar contenido con sus actores
-GET http://localhost:3008/api/contenido/1/actores
+GET http://localhost:3000/contenido/44/actores
 
-### filtar contenido por su nombre
-GET http://localhost:3008/api/contenido/name/Riverdale
+### filtar contenido por su nombre,mayuscula,minuscula,parcial
+GET http://localhost:3000/contenido/name/crow
 
-### Mostrar contenido de un actor en especifico po su id
-GET http://localhost:3008/api/contenido/actor/31
+### Mostrar los contenido de un actor en especifico po su id
+GET http://localhost:3000/contenido/actor/31
 
 ### filtar contenido por su genero
-GET http://localhost:3008/api/contenido/genero/3
-### filtar contenido por su genero
-GET http://localhost:3008/api/contenido/categorias/1
-### filtar contenido por su genero
-GET http://localhost:3008/api/contenido/genero/nombre/drama
+GET http://localhost:3000/contenido/genero/3
+
+### filtar contenido por su categoria
+GET http://localhost:3000/contenido/categorias/1
+### filtar contenido por su nombre de genero
+GET http://localhost:3000/contenido/genero/nombre/drama
 
 ### Crear un nuevo contenido
-POST http://localhost:3008/api/contenido
+POST http://localhost:3000/contenido
 Content-Type: application/json
 
 { 
@@ -33,12 +34,12 @@ Content-Type: application/json
    "id_categoria":1,
    "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novelas homónima de Diana Gabaldon.",
    "temporada":"7",
-   "duracion":"N/A",
+   "duracion":null,
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
   
 }
 ### Crear un actor de serie Outlander
-POST http://localhost:3008/api/contenido/actor
+POST http://localhost:3000/contenido/actor
 Content-Type: application/json
 
 {
@@ -47,10 +48,10 @@ Content-Type: application/json
 }
 
 ###unir contenido y actor en contenido_actor
-POST http://localhost:3008/api/contenido/156/actor/173
+POST http://localhost:3000/contenido/52/actor/360
 
 ###  Actualizar un contenido
-PUT http://localhost:3008/api/contenido/156
+PUT http://localhost:3000/contenido/52
 Content-Type: application/json
 
 {
@@ -59,33 +60,30 @@ Content-Type: application/json
    "id_categoria":1,
    "resumen":"Outlander es una serie de televisión británica-estadounidense de drama histórico basada en la saga de novela.Outlander es una serie de romance histórico y viajes en el tiempo sobre la enfermera británica Claire Randall, que viaja en el tiempo desde el siglo XX hasta la Escocia del siglo XVII . Allí encuentra el amor y la aventura con el apuesto Jamie Fraser, un guerrero de las Tierras Altas.",
    "temporada":"6",
-   "duracion":"N/A",
+   "duracion":null,
    "trailer":"https://youtu.be/1Q_ixUVIbcg"
 }
 
 ### Actualizar parcialmente contenido temporada:
-PATCH http://localhost:3008/api/contenido/156
+PATCH http://localhost:3000/contenido/52
 Content-Type: application/json
 
 {
-   "temporada":"7"
+   "temporada":"8"
 }
-### fusinar contenido y genero en tabla contenido_genero
-POST http://localhost:3008/api/contenido/156/genero/nombre/Drama
+###  relacionar entre el contenido y genero en tabla contenido_genero
+POST http://localhost:3000/contenido/52/genero/nombre/Drama
 
 ### crear un nueva palabra de busqueda
-POST http://localhost:3008/api/contenido/busqueda
+POST http://localhost:3000/contenido/busqueda
 Content-Type: application/json
 
 {
-   "palabras_de_busqueda":"Escocia"
+   "palabras_de_busqueda":"montañas"
 }
-### fusinar contenido y busqueda en tabla contenido_busqueda
-POST http://localhost:3008/contenido/156/busqueda/100
-
-### Eliminar un actor de un contenido
-DELETE http://localhost:3008/contenido/156/actor/173
+### relacionar contenido y busqueda en tabla contenido_busqueda
+POST http://localhost:3000/contenido/52/busqueda/52
 
 ### delete un contenido por ID
-DELETE http://localhost:3008/contenido/156
+DELETE http://localhost:3000/contenido/54
  

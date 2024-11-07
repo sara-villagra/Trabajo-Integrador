@@ -15,6 +15,7 @@ const contenidoBusquedaRouter = require('./routes/contenidoBusquedaRouter.js')
 const busquedaRouter = require('./routes/busquedaRouter.js')
 const { swaggerUi, swaggerDocs } = require('./utils/swaggerConfig.js')
 const PORT = process.env.PORT || 3000
+
 app.disable('x-powered-by')
 // Middlewares json
 app.use(express.json())
@@ -46,7 +47,7 @@ app.get('/', (req, res) => {
  res.status(200).json({ messagge: 'Bienvenido a TrailerFlix!' })
 })
 app.use(
- '/api/contenido',
+ '/contenido',
  contenidoRouters,
  actorRouter,
  contenidoActorRouters,

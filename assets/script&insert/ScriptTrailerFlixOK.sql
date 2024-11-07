@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS `trailerFlix` DEFAULT CHARACTER SET utf8 ;
-USE `trailerFlix` ;
+CREATE SCHEMA IF NOT EXISTS `trailersflix` DEFAULT CHARACTER SET utf8 ;
+USE `trailersflix` ;
 
 
 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 
 CREATE TABLE IF NOT EXISTS `generos` (
 	`id_genero` int AUTO_INCREMENT NOT NULL,
-	`nombre_` varchar(50) NOT NULL,
+	`nombre` varchar(100) NOT NULL,
 	PRIMARY KEY (`id_genero`)
 );
 

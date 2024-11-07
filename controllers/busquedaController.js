@@ -3,7 +3,7 @@ const { Busqueda } = require('../models/busqueda.js')
 /**
  * @swagger
  * paths:
- *   /api/contenido/busqueda:
+ *   /contenido/busqueda:
  *     post:
  *       summary: Crear una nueva búsqueda
  *       description: Crea una nueva búsqueda en la base de datos utilizando las palabras de búsqueda proporcionadas.
@@ -63,22 +63,38 @@ const addBusqueda = async (req, res) => {
  try {
   const { palabras_de_busqueda } = req.body
 
-  //validar
+  // Validar que se ingresaron las palabras de búsqueda
   if (!palabras_de_busqueda)
-   return res.status(400).send('No se ingresaron las palabras de busqueda')
+   return res.status(400).send('No se ingresaron las palabras de búsqueda')
 
+  // Verificar si ya existe esa palabra en la base de datos
+  const existeBusqueda = await Busqueda.findOne({
+   where: { palabras_de_busqueda }
+  })
+
+  // Si la palabra ya existe, responder que no se agregará
+  if (existeBusqueda) {
+   return res.status(400).json({
+    message: 'La palabra de búsqueda ya existe',
+    data: existeBusqueda
+   })
+  }
+
+  // Si no existe, crear la nueva búsqueda
   const busqueda = await Busqueda.create({
    palabras_de_busqueda
   })
-  if (!busqueda) return res.status(400).send('No se pudo crear la busqueda')
 
-  // res.status(201).send(busqueda)
+  // Si no se pudo crear, manejar el error
+  if (!busqueda) return res.status(400).send('No se pudo crear la búsqueda')
+
+  // Respuesta exitosa
   res.status(201).json({
-   message: 'Busqueda creada con éxito',
+   message: 'Búsqueda creada con éxito',
    data: busqueda
   })
  } catch (error) {
-  res.status(500).json({ error: 'Error al crear la busqueda', error })
+  res.status(500).json({ error: 'Error al crear la búsqueda', error })
  }
 }
 module.exports = {

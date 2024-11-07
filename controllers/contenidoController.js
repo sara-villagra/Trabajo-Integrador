@@ -2,6 +2,8 @@
 const { Contenido } = require('../models/contenido')
 const { Genero } = require('../models/genero.js')
 const { Contenido_Genero } = require('../models/contenido_genero.js')
+const { Contenido_Actores } = require('../models/contenido_actores.js')
+const { ContenidoBusqueda } = require('../models/contenido_busqueda.js')
 const { Actor } = require('../models/actor.js')
 const { Categoria } = require('../models/categoria.js')
 const { Op } = require('sequelize')
@@ -9,7 +11,7 @@ const { Op } = require('sequelize')
 /**
  * @swagger
  * paths:
- *   /api/contenido:
+ *   /contenido:
  *     get:
  *       summary: Obtiene todos los contenidos
  *       description: Este endpoint recupera todos los registros de contenido disponibles en la base de datos.
@@ -63,55 +65,80 @@ const getAllContenido = async (req, res) => {
 
 /**
  * @swagger
- * paths:
- *   /api/contenido/{id}:
- *     get:
- *       summary: Obtiene un contenido por ID
- *       description: Este endpoint recupera un registro de contenido específico de la base de datos utilizando su ID.
- *       tags:
- *         - Contenido
- *       parameters:
- *         - in: path
- *           name: id
- *           required: true
- *           description: ID del contenido que se desea obtener
- *           schema:
- *             type: integer
- *       responses:
- *         '200':
- *           description: Contenido obtenido exitosamente.
- *           content:
- *             application/json:
- *               schema:
- *                 $ref: '#/components/schemas/Contenido'
- *         '404':
- *           description: Contenido no encontrado
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   message:
- *                     type: string
- *                     example: Contenido no encontrado
- *         '500':
- *           description: Error en el servidor
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   message:
- *                     type: string
- *                     example: Error en el servidor
- *                   error:
- *                     type: string
+ * /contenido/{id_contenido}:
+ *   get:
+ *     summary: Obtiene un contenido por ID
+ *     description: Este endpoint recupera un registro de contenido específico de la base de datos utilizando su ID.
+ *     tags:
+ *       - Contenido
+ *     parameters:
+ *       - in: path
+ *         name: id_contenido
+ *         required: true
+ *         description: ID del contenido que se desea obtener
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: Contenido obtenido exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id_contenido:
+ *                   type: integer
+ *                   description: ID del contenido
+ *                 poster:
+ *                   type: string
+ *                   description: URL del póster del contenido
+ *                 titulo:
+ *                   type: string
+ *                   description: Título del contenido
+ *                 id_categoria:
+ *                   type: integer
+ *                   description: ID de la categoría del contenido
+ *                 resumen:
+ *                   type: string
+ *                   description: Resumen del contenido
+ *                 temporada:
+ *                   type: integer
+ *                   description: Temporada del contenido (si aplica)
+ *                 duracion:
+ *                   type: integer
+ *                   description: Duración del contenido en minutos
+ *                 trailer:
+ *                   type: string
+ *                   description: URL del trailer del contenido
+ *       '404':
+ *         description: Contenido no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Contenido no encontrado
+ *       '500':
+ *         description: Error en el servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error en el servidor
+ *                 error:
+ *                   type: string
  */
+
 //**Obtener un contenido por ID**
 const getContenidoById = async (req, res) => {
  try {
-  const { id } = req.params
-  const contenido = await Contenido.findByPk(id)
+  const { id_contenido } = req.params
+  const contenido = await Contenido.findByPk(id_contenido)
   if (!contenido) {
    res.status(404).json({ message: 'Contenido no encontrado' })
   } else {
@@ -124,7 +151,7 @@ const getContenidoById = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/name/{titulo}:
+ *  /contenido/name/{titulo}:
  *     get:
  *       summary: Obtiene un contenido por título
  *       description: Este endpoint recupera un registro de contenido específico de la base de datos utilizando su título.
@@ -173,8 +200,14 @@ const getContenidoById = async (req, res) => {
 const getContenidoByTitulo = async (req, res) => {
  try {
   const { titulo } = req.params
-  const contenido = await Contenido.findAll({ where: { titulo } })
-  if (!contenido) {
+  const contenido = await Contenido.findAll({
+   where: {
+    titulo: {
+     [Op.like]: `%${titulo}%`
+    }
+   }
+  })
+  if (contenido.length === 0) {
    res.status(404).json({ message: 'No hay contenido con ese título' })
   } else {
    res.status(200).json(contenido)
@@ -182,11 +215,21 @@ const getContenidoByTitulo = async (req, res) => {
  } catch (error) {
   res.status(500).json({ message: 'Error en el servidor', error })
  }
+ //   const { titulo } = req.params
+ //   const contenido = await Contenido.findAll({ where: { titulo } })
+ //   if (!contenido) {
+ //    res.status(404).json({ message: 'No hay contenido con ese título' })
+ //   } else {
+ //    res.status(200).json(contenido)
+ //   }
+ //  } catch (error) {
+ //   res.status(500).json({ message: 'Error en el servidor', error })
 }
+
 /**
  * @swagger
  * paths:
- *   /api/contenido/genero/{id_genero}:
+ *   /contenido/genero/{id_genero}:
  *     get:
  *       summary: Obtiene contenidos por género
  *       description: Este endpoint recupera registros de contenido específicos de la base de datos utilizando el identificador de género.
@@ -262,7 +305,7 @@ const getContenidoByGenero = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/genero/nombre/{nombre}:
+ *   /contenido/genero/nombre/{nombre}:
  *     get:
  *       summary: Obtiene contenidos por nombre de género
  *       description: Este endpoint recupera registros de contenido específicos de la base de datos utilizando el nombre del género.
@@ -347,7 +390,7 @@ const getContenidoByGeneronombre = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}/actores:
+ *   /contenido/{id_contenido}/actores:
  *     get:
  *       summary: Obtiene contenido junto con sus actores
  *       description: Este endpoint recupera un registro de contenido junto con los actores asociados en la base de datos.
@@ -421,7 +464,7 @@ const getContenidoWithActores = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/categorias/{id_categoria}:
+ *   /contenido/categorias/{id_categoria}:
  *     get:
  *       summary: Filtrar contenido por categoría
  *       description: Obtiene una lista de contenidos filtrados por su categoría utilizando el ID de la categoría.
@@ -504,7 +547,7 @@ const getContenidoByCategorias = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido:
+ *   /contenido:
  *     post:
  *       summary: Agregar un nuevo contenido
  *       description: Crea un nuevo contenido con los datos proporcionados en el cuerpo de la solicitud.
@@ -611,7 +654,7 @@ const addContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}:
+ *   /contenido/{id_contenido}:
  *     patch:
  *       summary: Actualizar la temporada de un contenido
  *       description: Actualiza el campo de temporada de un contenido específico según su ID.
@@ -696,7 +739,7 @@ const updateTemporada = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}:
+ *   /contenido/{id_contenido}:
  *     put:
  *       summary: Actualizar un contenido completo
  *       description: Actualiza todos los campos de un contenido específico según su ID.
@@ -821,7 +864,7 @@ const upContenido = async (req, res) => {
 /**
  * @swagger
  * paths:
- *   /api/contenido/{id_contenido}:
+ *   /contenido/{id_contenido}:
  *     delete:
  *       summary: Eliminar un contenido
  *       description: Elimina un contenido específico de la base de datos usando su ID.
@@ -859,20 +902,32 @@ const upContenido = async (req, res) => {
  *                     example: "error en la petición"
  */
 //eliminar contenido
+
 const deleteContenido = async (req, res) => {
  try {
   const { id_contenido } = req.params
+
+  // Verificar primero si el contenido existe
   const deleteConten = await Contenido.findByPk(id_contenido)
   if (!deleteConten) {
-   return res.status(404).json({ messagge: 'Contenido no encontrado' })
-  } else {
-   await deleteConten.destroy()
-   res.status(204).json({ messagge: 'Contenido eliminado con éxito' })
+   return res.status(404).json({ message: 'Contenido no encontrado' })
   }
+
+  // Si existe, elimina primero las referencias en las tablas relacionadas a contenido:
+  await Contenido_Actores.destroy({ where: { id_contenido } })
+  await ContenidoBusqueda.destroy({ where: { id_contenido } })
+  await Contenido_Genero.destroy({ where: { id_contenido } })
+
+  // Luego elimina el contenido
+  await deleteConten.destroy()
+  res.status(200).json({
+   message: 'Contenido eliminado con éxito'
+  })
  } catch (error) {
-  res.status(500).send({ messagge: 'error en la petición' })
+  res.status(500).json({ message: 'Error en la petición', error })
  }
 }
+
 module.exports = {
  getAllContenido,
  getContenidoById,
@@ -883,6 +938,6 @@ module.exports = {
  getContenidoWithActores,
  addContenido,
  upContenido,
- deleteContenido,
- updateTemporada
+ updateTemporada,
+ deleteContenido
 }
