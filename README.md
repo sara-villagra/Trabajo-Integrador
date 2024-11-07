@@ -51,7 +51,9 @@ Con ayuda AI, ingrese los datos en las tablas.**
   - contenidoRoutes.js
 /utils
  - swaggerConfig.js
-.env
+.env.local
+.env.local_railway
+.env.production
 .gitignore  
 api.http
 app.js
@@ -67,7 +69,9 @@ app.js
 - **/json**: Carpeta que contiene un archivos JSON con los datos de BD.
 - **/models**: Carpeta que contiene los modelos de la aplicación.
 - **/routes**: Carpeta que contiene las rutas de la aplicación.
-- **.env**: Archivo que contiene las variables de entorno.
+- **.env.local**: Archivo que contiene las variables de entorno.
+- **.env.local_railway**: Archivo que contiene las variables de entorno para Railway.
+- **.env.production**: Archivo que contiene las variables de entorno para producción.
 - **.gitignore**: Archivo que indica qué archivos o carpetas no se deben incluir
 - **api.http**: Archivo que contiene las rutas de la API, para verificar funcionalidad.
 - **app.js**: Archivo principal de la aplicación donde se define toda la lógica de rutas. 
@@ -92,7 +96,6 @@ En el archivo api.http se puede realizar las operaciones CRUD y verificar la fun
 - **POST /contenido/:id_contenido/genero/nombre/:nombre**: Asociar contenido y genero.
 - **POST /contenido/busqueda**: Crea una nueva palabra de busqueda.
 - **POST /contenido/:id/busqueda/:id**: Asociar contenido con palabra de busqueda.
-- **DELETE /contenido/:id/actor/id**: Eliminar un actor de contenido. 
 - **DELETE /contenido/:id**: Eliminar un contenido. 
 
 
@@ -115,7 +118,10 @@ En el archivo api.http se puede realizar las operaciones CRUD y verificar la fun
 
 ***Crear archivo de configuración de variables de entorno:***
 
-- .env
+- .env.local
+- .env.local_railway
+- .env.production
+
 
 ***Crear archivo de conexión a la base de datos dentro de la carperta conexion:***
 
@@ -143,25 +149,64 @@ La aplicación se inicializa y agregá la escucha de la conexión en el puerto 3
 
 ***Ejecutar el proyecto en terminal:***
 
-- npm start
-- Abrir en el navegador :
- http://localhost:3008/
+- npm start:local (despliega desde local)
+- npm start:local_railway (despliega desde railway)
+- npm start(despliega para produccion)
 
 
 ## Datos Proporcionados:
 Se proporciona dentro de la carpeta json un archivos correspondiente a los datos de los contenidos para cargar en la BD utilizando IA.
-Sin embargo, se proporcionar dentro de la carpeta assets dos carpetas: En uno, con los script para crear la BD y en el otro, con los insert para cargar 50 contenidos y realizar las pruebas del funcionamiento del CRUD.
+Sin embargo, se proporcionar dentro de la carpeta assets dos carpetas: En uno, con los script para crear la BD y en el otro, con los insert para cargar 50 contenidos para que puedas realizar las pruebas del funcionamiento del CRUD.
 
 
 ## Environment Variables
-Para correr este proyecto, deberás modificar el archivo .env_copy por .env.
+Para correr este proyecto, deberás modificar el archivo .env_copy por .env.local
 Para la de conexión , 
-- DATABASE= NOMBRE_BD
-- DBUSER=YOUR_ROOT
-- PASSWORD=YOUR_PASSWORD
-- HOST= localhost
+- DB_USER=root
+- DB_PASSWORD=YOUR_PASSWORD
+- DB_NAME=NAME_BD
+- DB_HOST=YOUR_HOST
+- DB_DIALECT=mysql
 - PORT= 3008
 
+
+## Deploy
+
+
+Para desplegar el proyecto en Railway, deberás crear un archivo .env.local_railway y alli deberas agregar el DB_PASSWORD, DB_HOST y DB_USER que te proporciona Railway.app.
+- Abrir en el navegador, ir a   :
+ https://railway.app/
+
+Alli, en la sección settings, encontaras las variables correspondientes para realizar el deploy.Luego..
+
+
+- Ir, a Create.(para crear deploy)
+
+
+
+![alt text](/assets/imagen/image.png)
+
+
+- Seleccionar Github Repo
+
+
+
+![alt text](/assets/imagen/image-1.png)
+
+
+
+- Agregar el nombre del repositorio a desplegar.
+
+![alt text](/assets/imagen/image-2.png)
+
+
+- Seleccionar Deploy Repo.
+
+
+Una vez que lo genere, podrás encontrar en Networking, la url de dominio publico para desplegar tu proyecto.
+
+Tambien .env.production deberas modificar el DB_HOST y el DB_PORT con los que te proporciona railway en su plataforma.
+para poder conectarte con mysql y alli crear la bd, con los datos que te proporciono en la carpeta assets.
 ## Autor
 - https://github.com/sara-villagra
 
