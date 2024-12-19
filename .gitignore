@@ -1,6 +1,6 @@
 .env
 .env.local
-.env.local.railway
+.env.local_railway
 .env.production
 node_modules/
 
