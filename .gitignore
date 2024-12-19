@@ -1,4 +1,7 @@
+.env
 .env.local
+.env.local.railway
+.env.production
 node_modules/
 
 
